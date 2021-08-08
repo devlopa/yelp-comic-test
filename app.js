@@ -21,9 +21,19 @@ const commentRoutes = require('./routes/comments');
 const mainRoutes = require('./routes/main');
 const userRoutes = require('./routes/auth');
 
-const config = require('./config');
+try{
+var config = require('./config');
+}catch(e){
+    console.log(e);
+}
 const mongoose = require('mongoose');
+
+try{
 mongoose.connect(config.db.connection,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true});
+}catch(e){
+    mongoose.connect(process.env.DB_CONNECTION,{useNewUrlParser:true,useUnifiedTopology:true,useCreateIndex:true});
+    console.log(e);
+}
 app.use(methodOverride('_method'));
 app.use(morgan('tiny'));
 console.log("Testing");
@@ -31,7 +41,7 @@ console.log("Testing");
 // Express Session Configuartion
 
 app.use(expressSession({
-    secret:"ldjlsjdljljlsdjldjfkdjfghshlssj",
+    secret:process.env.ES_SECRET || config.expressSession.secret,
     resave:false,
     saveUninitialized:false
 }))
@@ -59,6 +69,6 @@ app.use("/",userRoutes);
 
 // seed();
 
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log("App is Running");
 });
