@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+<!-- <form method="POST" action="/comics">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title">
+
+    
+    <label for="description">description</label>
+    <input type="text" id="description" name="description">
+
+    
+    <label for="image">Image</label>
+    <input type="text" id="image" name="image">
+
+    <input type="submit" value="Add Comic">
+</form> -->
+
+<div class="container">
+    <form method="POST" action="/comics">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" name="title">
+          
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" class="form-control" id="description" name="description">
+        </div>
+
+        <div class="mb-3">
+          <label for="author" class="form-label">Author</label>
+          <input type="text" class="form-control" id="author" name="author">
+        </div>
+
+        <div class="mb-3">
+          <label for="publisher" class="form-label">Publisher</label>
+          <input type="text" class="form-control" id="publisher" name="publisher">
+        </div>
+
+        <div class="mb-3">
+          <label for="date" class="form-label">Date</label>
+          <input type="date" class="form-control" id="date" name="date">
+        </div>
+
+        
+        <div class="mb-3">
+          <label for="series" class="form-label">Series</label>
+          <input type="text" class="form-control" id="series" name="series">
+        </div>
+
+        <div class="mb-3">
+          <label for="issue" class="form-label">Issue</label>
+          <input type="number" class="form-control" id="issue" name="issue">
+        </div>
+
+        <div class="mb-3">
+          <label for="genre" class="form-label">Genre</label>
+          <select id="genre" name="genre">
+            <option disabled selected>-- Choose Below --</option>
+            <option>Superhero</option>
+            <option>Manga</option>
+            <option>Slice-of-Life</option>
+            <option>Humor</option>
+            <option>Sci-fi</option>
+            <option>Fantasy</option>
+            <option>Horror</option>
+            <option>Action</option>
+            <option>Nonfiction</option>
+
+          </select>
+        </div>
+
+        
+        <div class="mb-3">
+          <input type="checkbox" class="form-check-input" id="color" name="color">
+          <label for="color" class="form-label">Color</label>
+        </div>
+
+
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image Link</label>
+            <input type="text" class="form-control" id="image" name="image">
+          </div>
+        
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+<%- include('partials/footer') %>
