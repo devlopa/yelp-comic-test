@@ -78,7 +78,8 @@ router.post('/',isLoggedIn, async(req,res)=>{
 });
 
 router.get("/:id/edit",checkComicOwner, async (req,res)=>{
-       const comic = await Comic.findById(req.body.id).exec();
+       const comic = await Comic.findById(req.params.id).exec();
+       console.log(comic);
        res.render('comics_edit',{comic});
 });
 
