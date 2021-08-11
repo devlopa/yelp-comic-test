@@ -3,6 +3,7 @@ const app = express();
 app.set('view engine','ejs');
 app.use(express.static('public'));
 const bodyParser = require('body-parser');
+const flash = require('connect-flash');
 app.use(bodyParser.urlencoded({extended:true}));
 const methodOverride = require('method-override');
 const morgan = require('morgan');
@@ -45,7 +46,8 @@ app.use(expressSession({
     resave:false,
     saveUninitialized:false
 }))
-
+// Using connect flash
+app.use(flash());
 // Passport Configuration
 
 app.use(passport.initialize());
