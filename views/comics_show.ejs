@@ -43,12 +43,14 @@
                     </tr>
                 </tbody>
             </table>
-            <a href="/comics/<%= comic._id %>/edit">
-                <button class="btn btn-outline-success btn-lg  mb-2">Edit</button>
-            </a>
-            <form method="POST" action="/comics/<%= comic._id %>?_method=DELETE">
-                <button class="btn btn-outline-danger btn-lg ">Delete</button>
-            </form>
+            <% if(user && user.username === comic.owner.username){ %>
+                <a href="/comics/<%= comic._id %>/edit">
+                    <button class="btn btn-outline-success btn-lg  mb-2">Edit</button>
+                </a>
+                <form method="POST" action="/comics/<%= comic._id %>?_method=DELETE">
+                    <button class="btn btn-outline-danger btn-lg ">Delete</button>
+                </form>
+            <% } %>
         </div>
     </div>
     <div class="row comment-header mt-3">
@@ -61,10 +63,12 @@
         <div class="row comment-container mt-3 py-2 border">
             <div class="col-2 border-right"><%= comment.user.username %></div>
             <div class="col-2 border-right my-auto d-flex flex-wrap justify-content-center">
-                <a class="btn btn-sm btn-success w-75 p-0 my-1" href="/comics/<%= comic._id %>/comments/<%= comment._id %>/edit">Edit</a>
-                <form class="w-75 my-1" action="/comics/<%= comic._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                    <button type="submit" class="btn btn-sm btn-danger w-100 p-0">Delete</button>
-                </form>
+                <% if(user && user.username === comment.user.username){ %>
+                    <a class="btn btn-sm btn-success w-75 p-0 my-1" href="/comics/<%= comic._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                    <form class="w-75 my-1" action="/comics/<%= comic._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="btn btn-sm btn-danger w-100 p-0">Delete</button>
+                    </form>
+                <% } %>
             </div>
             <div class="col-8 my-auto"><%= comment.text %></div>
         </div>

@@ -9,23 +9,25 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/comics">Comics</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/comics/new">Add New</a>
-          </li>
+          <% if(user){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/comics/new">Add Comic</a>
+            </li>
+            <% } %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Genres
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Superhero</a></li>
-              <li><a class="dropdown-item" href="#">Manga</a></li>
-              <li><a class="dropdown-item" href="#">Humor</a></li>
-              <li><a class="dropdown-item" href="#">Slice-of-Life</a></li>
-              <li><a class="dropdown-item" href="#">Sci-fi</a></li>
-              <li><a class="dropdown-item" href="#">Fantasy</a></li>
-              <li><a class="dropdown-item" href="#">Horror</a></li>
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Non Fiction</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/superhero">Superhero</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/manga">Manga</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/humor">Humor</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/slice-of-life">Slice-of-Life</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/sci-fi">Sci-fi</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/fantasy">Fantasy</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/horror">Horror</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/action">Action</a></li>
+              <li><a class="dropdown-item" href="/comics/genre/nonfiction">NonFiction</a></li>
             </ul>
           </li>
           <% if(user){ %> 
