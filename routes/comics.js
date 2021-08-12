@@ -79,12 +79,12 @@ router.post('/',isLoggedIn, async(req,res)=>{
     try{
 
         let comic = await Comic.create(newComic);
-        console.log(comic);
+        req.flash('success','Successfully created comic');
         res.redirect(`/comics/${comic._id}`);
     }
     catch(err){
-        console.log(err);
-        res.send('You Broke it POST Route');
+        req.flash('error','Error creating comic');
+        res.render('/comics');
     }
 });
 
@@ -112,11 +112,12 @@ router.put("/:id",checkComicOwner,async (req,res)=>{
     
     try{
         const updatedComic = await Comic.findByIdAndUpdate(req.params.id,comic,{new:true}).exec();
-        console.log(updatedComic);
+        req.flash('success','Successfully Updated comic');
         res.redirect(`/comics/${req.params.id}`);
     }catch(err){
         console.log(err);
-        res.send("Broken /post update");
+        req.flash('error','Error updating comic');
+        res.redirect('/comics');
     }
 });
 
@@ -126,11 +127,11 @@ router.delete("/:id",checkComicOwner,async (req,res)=>{
     
     try{
         const comic = await Comic.findByIdAndDelete(req.params.id).exec()
-        console.log("Comic Deleted: ",comic);
+        req.flash('success','comic deleted');
         res.redirect('/comics')
     }catch(err){
-        console.log(err);
-        res.send("Broken Delete Route");
+        req.flash('error','comic deletion failed');
+        res.redirect('/comics');
     }
 });
 

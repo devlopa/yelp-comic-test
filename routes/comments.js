@@ -20,10 +20,11 @@ router.post('/',isLoggedIn,async(req,res)=>{
             text:req.body.text,
             comicId:req.body.comicId
         });
-        console.log(comment);
+        req.flash('success','Successfully created comic');
         res.redirect(`/comics/${req.body.comicId}`);
     }catch(err){
         console.log(err);
+        req.flash('error','Error deleting comment');
         res.send("Broken Again Comment POST Route");
     }
 });
@@ -47,9 +48,11 @@ router.put('/:commentId',checkCommentOwner,async(req,res)=>{
     try{
         const comment = await Comment.findByIdAndUpdate(req.params.commentId,{text:req.body.text},{new:true});
         console.log(comment);
+        req.flash('success','Successfully updated comment');
         res.redirect(`/comics/${req.params.id}`)
     }catch(err){
-        console.log(err);
+        req.flash('error','Error Updating comment');
+        res.redirect('/comics');
     }
 });
 
@@ -58,8 +61,11 @@ router.delete('/:commentId' ,checkCommentOwner,async(req,res)=>{
     try{
         const comment = await Comment.findByIdAndDelete(req.params.commentId);
         console.log(comment);
+        req.flash('success','Successfully deleted comment');
         res.redirect(`/comics/${req.params.id}`);
     }catch(err){
+        req.flash('error','Error deleting comment');
+        res.redirect('/comics');
         console.log(err);
     }
 })
