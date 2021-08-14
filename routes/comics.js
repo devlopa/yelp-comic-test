@@ -45,6 +45,10 @@ router.get('/genre/:genre',async(req,res)=>{
     }
 });
 
+router.post('/vote',(req,res)=>{
+    res.json({message:'voted'});
+});
+
 router.get('/:id',async (req,res)=>{
    try{
 
@@ -95,6 +99,7 @@ router.get("/:id/edit",checkComicOwner, async (req,res)=>{
        console.log(comic);
        res.render('comics_edit',{comic});
 });
+
 
 router.put("/:id",checkComicOwner,async (req,res)=>{
     
